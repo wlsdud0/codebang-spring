@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>list</title>
+</head>
+<body>
+<h2>list</h2>
+<table>
+  <tr>
+    <th>번호</th>
+    <th>아이디</th>
+    <th>비밀번호</th>
+    <th>이름</th>
+    <th>상세조회</th>
+    <th>삭제</th>
+  </tr>
+  <tr th:each="user: ${userList}">
+    <td th:text="${user.id}"></td>
+    <td th:text="${user.userId}"></td>
+    <td th:text="${user.userPassword}"></td>
+    <td th:text="${user.userName}"></td>
+    <td>
+      <!-- rest api /user/1 -->
+      <!-- | 경로상에 찍히는 값 | -->
+      <a th:href="@{|/user/${user.id}|}">조회</a>
+    </td>
+    <td>
+      <a th:href="@{|/user/delete/${user.id}|}">삭제</a>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

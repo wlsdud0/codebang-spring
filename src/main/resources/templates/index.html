@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>index</title>
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- bootstrap icon-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+<div th:replace="~{/layout/layoutIndex :: body}">
+
+  <div th:fragment="content" style="border: 1px solid #dee2e6; padding: 15px; border-radius: 5px;">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th class="col-1">번호</th>
+        <th class="col-3">제목</th>
+        <th class="col-2">작성자</th>
+        <th class="col-2">작성일</th>
+        <th class="col-2">조회</th>
+      </tr>
+      </thead>
+      <tr th:each="board: ${boardList}">
+        <td class="col-1" th:text="${board.id}"></td>
+        <td class="col-3"><a th:href="@{|/board/${board.id}|(page=${boardList.number + 1})}" th:text="${board.boardTitle}"></a></td>
+        <td class="col-2" th:text="${board.userName}"></td>
+        <td class="col-2" th:text="*{#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd')}"></td>
+        <td class="col-2" th:text="${board.boardHits}"></td>
+      </tr>
+    </table>
+
+    <div style="text-align: center; letter-spacing: 2px;">
+      <!-- 첫번째 페이지로 이동 -->
+      <!-- /board/paging?page=1 -->
+      <a th:href="@{/(page=1)}" style="text-decoration: none; color: inherit;">
+        <<
+      </a>
+      <!-- 이전 링크 활성화 비활성화 -->
+      <!-- boardList.getNumber() 사용자:2페이지 getNumber()=1 -->
+      <a th:href="${boardList.first} ? '#' : @{/(page=${boardList.number})}" style="text-decoration: none; color: inherit;">
+        <
+      </a>
+
+      <!-- 페이지 번호 링크(현재 페이지는 숫자만)
+              for(int page=startPage; page<=endPage; page++)-->
+      <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
+    <!-- 현재페이지는 링크 없이 숫자만 -->
+        <span th:if="${page == boardList.number + 1}" th:text="${page}" style="text-decoration: none; color: inherit;"></span>
+        <!-- 현재페이지 번호가 아닌 다른 페이지번호에는 링크를 보여줌 -->
+        <span th:unless="${page == boardList.number + 1}">
+            <a th:href="@{/(page=${page})}" th:text="${page}" style="text-decoration: none; color: inherit;"></a>
+        </span>
+    </span>
+
+      <!-- 다음 링크 활성화 비활성화
+          사용자: 2페이지, getNumber: 1, 3페이지-->
+      <a th:href="${boardList.last} ? '#' : @{/(page=${boardList.number + 2})}" style="text-decoration: none; color: inherit;">
+        >
+      </a>
+      <!-- 마지막 페이지로 이동 -->
+      <a th:href="@{/(page=${boardList.totalPages})}" style="text-decoration: none; color: inherit;">
+        >>
+      </a> <br>
+    </div>
+
+    <button class="btn btn-dark" onclick="editReq()">글작성</button>
+
+  </div>
+
+</div>
+
+
+<!-- bootstrap js -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script>
+    const editReq = () => {
+        location.href = "/board/edit";
+    }
+
+
+</script>
+</body>
+</html>
