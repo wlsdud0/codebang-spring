@@ -11,7 +11,7 @@
 
 <body>
 
-<div th:replace="~{/layout/layoutIndex :: body}">
+<div th:replace="~{layout/layoutIndex :: body}">
 
   <div th:fragment="content" style="border: 1px solid #dee2e6; padding: 15px; border-radius: 5px;">
     <table class="table table-hover">
@@ -36,40 +36,37 @@
     <div style="text-align: center; letter-spacing: 2px;">
       <!-- 첫번째 페이지로 이동 -->
       <!-- /board/paging?page=1 -->
-      <a th:href="@{/(page=1)}" style="text-decoration: none; color: inherit;">
+      <!-- 첫 페이지로 이동: 기존의 @{/board/home(page=1)} 대신 @{/board/home(page=1)} 사용 -->
+      <a th:href="@{/board/home(page=1)}" style="text-decoration: none; color: inherit;">
         <<
       </a>
-      <!-- 이전 링크 활성화 비활성화 -->
-      <!-- boardList.getNumber() 사용자:2페이지 getNumber()=1 -->
-      <a th:href="${boardList.first} ? '#' : @{/(page=${boardList.number})}" style="text-decoration: none; color: inherit;">
+      <!-- 이전 페이지 링크 활성화/비활성화: @{/home(page=${boardList.number})} 대신 @{/board/home(page=${boardList.number})} 사용 -->
+      <a th:href="${boardList.first} ? '#' : @{/board/home(page=${boardList.number})}" style="text-decoration: none; color: inherit;">
         <
       </a>
 
-      <!-- 페이지 번호 링크(현재 페이지는 숫자만)
-              for(int page=startPage; page<=endPage; page++)-->
-      <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
-    <!-- 현재페이지는 링크 없이 숫자만 -->
+      <!-- 페이지 번호 링크 (현재 페이지는 숫자만, 나머지는 링크) -->
+      <span th:each="page : ${#numbers.sequence(startPage, endPage)}">
+        <!-- 현재 페이지는 링크 없이 숫자만 표시 -->
         <span th:if="${page == boardList.number + 1}" th:text="${page}" style="text-decoration: none; color: inherit;"></span>
-        <!-- 현재페이지 번호가 아닌 다른 페이지번호에는 링크를 보여줌 -->
+            <!-- 현재 페이지가 아닌 다른 페이지는 링크와 함께 번호 표시 -->
         <span th:unless="${page == boardList.number + 1}">
-            <a th:href="@{/(page=${page})}" th:text="${page}" style="text-decoration: none; color: inherit;"></a>
+            <a th:href="@{/board/home(page=${page})}" th:text="${page}" style="text-decoration: none; color: inherit;"></a>
         </span>
-    </span>
+      </span>
 
-      <!-- 다음 링크 활성화 비활성화
-          사용자: 2페이지, getNumber: 1, 3페이지-->
-      <a th:href="${boardList.last} ? '#' : @{/(page=${boardList.number + 2})}" style="text-decoration: none; color: inherit;">
+      <!-- 다음 페이지 링크 활성화/비활성화: @{board/home(page=${boardList.number + 2})} 대신 @{/board/home(page=${boardList.number + 2})} 사용 -->
+      <a th:href="${boardList.last} ? '#' : @{/board/home(page=${boardList.number + 2})}" style="text-decoration: none; color: inherit;">
         >
       </a>
-      <!-- 마지막 페이지로 이동 -->
-      <a th:href="@{/(page=${boardList.totalPages})}" style="text-decoration: none; color: inherit;">
+      <!-- 마지막 페이지로 이동: @{/home(page=${boardList.totalPages})} 대신 @{/board/home(page=${boardList.totalPages})} 사용 -->
+      <a th:href="@{/board/home(page=${boardList.totalPages})}" style="text-decoration: none; color: inherit;">
         >>
       </a> <br>
-    </div>
+
+     </div>
 
     <button class="btn btn-dark" onclick="editReq()">글작성</button>
-
-  </div>
 
 </div>
 

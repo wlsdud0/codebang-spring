@@ -6,6 +6,7 @@ import com.example.project.board.dto.BoardDTO;
 import com.example.project.board.service.CommentService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -22,8 +23,25 @@ public class BoardController {
     private final BoardService boardService;
     private final CommentService commentService;
 
+    // 기본페이지와 페이징 요청 메서드
+    @GetMapping("board/home")
+    public String paging(@PageableDefault(page = 1) Pageable pageable, Model model) {
+        Page<BoardDTO> boardList = boardService.paging(pageable);
+        int blockLimit = 10;
+        int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1; // 1 4 7 10 ~~
+        int endPage = Math.min((startPage + blockLimit - 1), boardList.getTotalPages());
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return "board/index";
+    }
+
+
+
     // 글 작성
-    @GetMapping("/board/edit")
+    @GetMapping("board/edit")
     public String editForm(HttpSession session) {
         // 세션에 userId가 있는지 확인
         if (session.getAttribute("userId") == null) {
@@ -33,7 +51,7 @@ public class BoardController {
         return "board/edit";
     }
 
-    @PostMapping("/board/edit")
+    @PostMapping("board/edit")
     public String edit(@ModelAttribute BoardDTO boardDTO, HttpSession session) throws IOException {
         // 세션에 저장된 userId를 writer에 저장
         String userName = (String) session.getAttribute("userName");
@@ -70,7 +88,7 @@ public class BoardController {
     }
 
     // 글 수정
-    @GetMapping("/board/update/{id}")
+    @GetMapping("board/update/{id}")
     public String updateForm(@PathVariable Long id, Model model, HttpSession session) {
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("boardUpdate", boardDTO);
@@ -85,7 +103,7 @@ public class BoardController {
         return "redirect:/";
     }
 
-    @PostMapping("/board/update")
+    @PostMapping("board/update")
     public String update(@ModelAttribute BoardDTO boardDTO, Model model, HttpSession session) throws IOException  {
         // 세션에 저장된 userId를 writer에 저장
         String userName = (String) session.getAttribute("userName");

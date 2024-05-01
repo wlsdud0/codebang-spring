@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Welcome to Codebang</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/main.css"> <!-- 별도의 CSS 파일 링크 -->
 </head>
 <body class="pt-5" style="display: flex; flex-direction: column; min-height: 100vh;">
-
 <div style="flex: 1 0 auto;">
-  <!-- 네비게이션 바-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/">Codebang</a>
@@ -19,25 +17,21 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a class="nav-link" href="/">홈
-            <span class="sr-only">(current)</span>
-          </a></li>
-          <li class="nav-item active">
-            <!-- 로그인하지 않은 사용자의 경우 -->
-            <div th:if="${session.userId == null}">
+          <li class="nav-item"><a th:class="${homeActive} ? 'nav-link active' : 'nav-link'" href="/">홈</a></li>
+          <li class="nav-item">
+            <div th:if="${session.userId == null}"> <!-- 로그인하지 않은 사용자 -->
               <a class="nav-link" href="/user/login">로그인</a>
             </div>
-            <!-- 로그인 한 사용자의 경우 -->
-            <div th:if="${session.userId != null}">
+            <div th:if="${session.userId != null}"> <!-- 로그인 한 사용자 -->
               <a class="nav-link" href="/user/logout">로그아웃</a>
             </div>
           </li>
           <li class="nav-item">
-            <div th:if="${session.userId} == null">
+            <div th:if="${session.userId == null}">
               <a class="nav-link" href="/user/signup">회원가입</a>
             </div>
-            <div th:if="${session.userId} != null">
-              <a class="nav-link" href="/user/profile" th:text="|${session.userName}님|"></a>
+            <div th:if="${session.userId != null}">
+              <a class="nav-link" href="/user/profile" th:text="'${session.userName}님'"></a>
             </div>
           </li>
         </ul>
@@ -45,39 +39,29 @@
     </div>
   </nav>
 
-
-
   <div class="container" style="flex: 1 0 auto;">
     <div class="row">
-
       <div class="col-lg-3">
-
         <h3 class="my-4 text-center">Category</h3>
         <div class="list-group mb-4">
           <a class="list-group-item list-group-item-info text-center font-weight-bold">게시판</a>
         </div>
-
       </div>
 
-      <div class="col-lg-9 my-4 mb-4">
-        <div th:insert="~{/index :: content}">
-
-        </div>
+      <div class="col-lg-9 my-4">
+        <div th:insert="~{board/index :: content}"></div>
       </div>
+
     </div>
   </div>
 </div>
 
+<footer class="py-4 bg-dark" style="flex-shrink: 0;">
+  <div class="container">
+    <p class="m-0 text-center text-white">&copy; Codebang 2024</p>
+  </div>
+</footer>
 
-<div id="myFooter" style="flex-shrink: 0;">
-  <footer class="py-4 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">&copy; Codebang 2024</p>
-    </div>
-  </footer>
-</div>
-
-<!-- bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
