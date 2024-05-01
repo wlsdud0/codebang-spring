@@ -12,7 +12,7 @@ spring:
 
   thymeleaf:
     cache: false
-    prefix: classpath:/templates/  # 배포시 경로
+    prefix: classpath:/templates/   # 배포시 경로
 #    prefix: file:src/main/resources/templates/
 
   servlet:
