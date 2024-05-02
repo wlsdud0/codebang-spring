@@ -31,7 +31,7 @@
               <a class="nav-link" href="/user/signup">회원가입</a>
             </div>
             <div th:if="${session.userId != null}">
-              <a class="nav-link" href="/user/profile" th:text="'${session.userName}님'"></a>
+              <a class="nav-link" href="/user/profile" th:text="${session.userName}"></a>
             </div>
           </li>
         </ul>
