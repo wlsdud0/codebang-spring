@@ -18,10 +18,10 @@ public class BoardEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String boardTitle;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String boardContents;
 
     @Column
