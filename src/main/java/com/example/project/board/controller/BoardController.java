@@ -38,7 +38,8 @@ public class BoardController {
     }
 
     // 글 작성
-    @GetMapping("board/edit")
+    // 글 작성 폼 페이지 요청
+    @GetMapping("/board/edit")
     public String editForm(HttpSession session) {
         // 세션에 userId가 있는지 확인
         if (session.getAttribute("userId") == null) {
@@ -47,12 +48,19 @@ public class BoardController {
         }
         return "board/edit";
     }
-    @PostMapping("board/edit")
+
+    // 글 작성 요청 처리
+    @PostMapping("/board/edit")
     public String edit(@ModelAttribute BoardDTO boardDTO, HttpSession session) throws IOException {
-        // 세션에 저장된 userId를 writer에 저장
+        // 세션에 저장된 userName을 writer에 저장
         String userName = (String) session.getAttribute("userName");
-        // DTO에 writer 설정
+        // DTO에 userName 설정
         boardDTO.setUserName(userName);
+
+        // 내용에서 개행 문자를 <br/>로 변환
+        String contentsWithBr = boardDTO.getBoardContents().replaceAll("(?:\r\n|\r|\n)", "<br/>");        boardDTO.setBoardContents(contentsWithBr);
+
+        // 변환된 DTO를 이용하여 DB에 저장하는 로직 호출
         boardService.edit(boardDTO);
 
         return "redirect:/";
