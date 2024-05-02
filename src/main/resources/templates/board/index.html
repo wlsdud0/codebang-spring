@@ -63,13 +63,11 @@
       <a th:href="@{/board/home(page=${boardList.totalPages})}" style="text-decoration: none; color: inherit;">
         >>
       </a> <br>
-
-     </div>
+    </div>
 
     <button class="btn btn-dark" onclick="editReq()">글작성</button>
-
+  </div>
 </div>
-
 
 <!-- bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -78,10 +76,8 @@
 
 <script>
     const editReq = () => {
-        location.href = "board/edit";
+        location.href = "/board/edit";
     }
-
-
 </script>
 </body>
 </html>

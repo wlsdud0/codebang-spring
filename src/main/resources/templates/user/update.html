@@ -10,10 +10,9 @@
 </head>
 <style>
 </style>
+
 <body>
-
-
-<div th:replace="~{/layout/layoutUpdate :: body}">
+<div th:replace="~{layout/layoutUpdate :: body}">
 
   <div th:fragment="content">
     <form action="/user/update" method="post" class="p-5">
@@ -40,10 +39,8 @@
         <input type="submit" value="정보수정" class="btn btn-dark btn-lg btn-block">
       </div>
     </form>
-
   </div>
-
-
+</div>
 
 <!-- bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

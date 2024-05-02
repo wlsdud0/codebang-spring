@@ -16,18 +16,18 @@ public class UserController {
     private final UserService userService;
 
     // 회원가입 페이지 출력 요청
-    @GetMapping("/user/signup")
+    @GetMapping("user/signup")
     public String signupForm() {
         return "user/signup";
     }
-    @PostMapping("/user/signup")
+    @PostMapping("user/signup")
     public String signup(@ModelAttribute UserDTO userDTO){
         userService.save(userDTO);
         return "user/login";
     }
 
     // 로그인 페이지 출력 요청
-    @GetMapping("/user/login")
+    @GetMapping("user/login")
     public String loginFrom(HttpSession session) {
         // 세션에 userId가 있는지 확인
         if (session.getAttribute("userId") != null) {
@@ -37,7 +37,7 @@ public class UserController {
         // 로그인이 되어있지 않다면 로그인 페이지로 이동
         return "user/login";
     }
-    @PostMapping("/user/login")
+    @PostMapping("user/login")
     public String login(@ModelAttribute UserDTO userDTO, HttpSession session) {
         UserDTO loginResult = userService.login(userDTO);
 
@@ -55,7 +55,7 @@ public class UserController {
     }
 
     // 회원 목록 상세 조회 출력 요청
-    @GetMapping("/user/profile")
+    @GetMapping("user/profile")
     public String findById(HttpSession session, Model model) {
         String myUserId = (String) session.getAttribute("userId");
         UserDTO userDTO = userService.findById(myUserId);
@@ -64,36 +64,36 @@ public class UserController {
     }
 
     // 회원정보 수정 출력 요청
-    @GetMapping("/user/update")
+    @GetMapping("user/update")
     public String profileForm(HttpSession session, Model model) {
         String myUserId = (String) session.getAttribute("userId");
         UserDTO userDTO = userService.findById(myUserId);
         model.addAttribute("updateUser", userDTO);
         return "user/update";
     }
-    @PostMapping("/user/update")
+    @PostMapping("user/update")
     public String update(@ModelAttribute UserDTO userDTO) {
         userService.update(userDTO);
         return "redirect:/user/profile";
     }
 
     // 회원정보 삭제 출력 요청
-    @GetMapping("/user/delete/{id}")
+    @GetMapping("user/delete/{id}")
     public String deleteById(@PathVariable Long id, HttpSession session) {
         userService.deleteById(id);
         session.invalidate();
-        return "index";
+        return "redirect:/";
     }
 
     // 로그아웃
-    @GetMapping("/user/logout")
+    @GetMapping("user/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }
 
     // userId-check
-    @PostMapping("/user/userId-check")
+    @PostMapping("user/userId-check")
     public @ResponseBody String emailCheck(@RequestParam String userId) {
         return userService.userIdCheck(userId);
     }
