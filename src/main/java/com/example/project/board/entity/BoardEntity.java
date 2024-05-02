@@ -61,7 +61,6 @@ public class BoardEntity extends BaseEntity {
         boardEntity.setBoardHits(0);
         boardEntity.setFileAttached(1); // 파일 있음.
         boardEntity.setUserEntity(userEntity);
-
         return boardEntity;
     }
 
@@ -74,7 +73,6 @@ public class BoardEntity extends BaseEntity {
         boardEntity.setBoardHits(boardDTO.getBoardHits());
         boardEntity.setFileAttached(0); // 파일 없음.
         boardEntity.setUserEntity(userEntity);
-
         return boardEntity;
     }
 
@@ -87,7 +85,6 @@ public class BoardEntity extends BaseEntity {
         boardEntity.setBoardHits(0);
         boardEntity.setFileAttached(1); // 파일 있음.
         boardEntity.setUserEntity(userEntity);
-
         return boardEntity;
     }
 

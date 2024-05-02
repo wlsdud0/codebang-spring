@@ -32,7 +32,6 @@ public class CommentEntity extends BaseEntity{
         commentEntity.setUserEntity(userEntity);
         commentEntity.setCommentContent(commentDTO.getCommentContent());
         commentEntity.setBoardEntity(boardEntity);
-
         return commentEntity;
     }
 

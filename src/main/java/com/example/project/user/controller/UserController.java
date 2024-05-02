@@ -98,14 +98,8 @@ public class UserController {
         return userService.userIdCheck(userId);
     }
 
-
-
-
-
-
-
     // 관리자 : 회원 목록 페이지 출력 요청
-    @GetMapping("/user/")
+    @GetMapping("user/")
     public String findAll(Model model) {
         List<UserDTO> userDTOList = userService.findAll();
 
@@ -113,13 +107,4 @@ public class UserController {
         model.addAttribute("userList", userDTOList);
         return "user/list";
     }
-
-    //    // 회원 목록 상세 조회 출력 요청
-//    // @PathVariable: 경로상의 값을 가져올 때 사용
-//    @GetMapping("/user/{id}")
-//    public String findById(@PathVariable Long id, Model model) {
-//        UserDTO userDTO = userService.findById(id);
-//        model.addAttribute("user", userDTO);
-//        return "user/profile";
-//    }
 }

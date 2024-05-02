@@ -29,7 +29,6 @@ public class BoardDTO {
     private int fileAttached; // 파일 첨부 여부 (첨부 1, 미첨부 0)
 
     // DTO 생성자
-    // TODO: 3/1/24  (나중에 user추가)
     public BoardDTO(Long id, Long userIndex, String boardTitle, String userName,int boardHits, LocalDateTime boardCreatedTime) {
         this.id = id;
         this.userIndex = userIndex;
@@ -78,7 +77,6 @@ public class BoardDTO {
             // fileAttached가 0인 경우
             boardDTO.setFileAttached(0);
         }
-
         return boardDTO;
     }
 }

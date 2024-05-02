@@ -25,10 +25,8 @@ public class CommentDTO {
         commentDTO.setCommentCreatedTime(commentEntity.getCreatedTime());
 //        commentDTO.setBoardId(commentEntity.getBoardEntity().getId()); // Service 메서드에 @Transactional
         commentDTO.setBoardId(boardId);
-
         commentDTO.setCommentWriter(commentEntity.getUserEntity().getUserName());
         commentDTO.setUserIndex(commentEntity.getUserEntity().getId());
-
         return commentDTO;
     }
 }

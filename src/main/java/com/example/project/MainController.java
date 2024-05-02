@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @RequiredArgsConstructor
 public class MainController {
-    private final BoardService boardService;
 
     // 기본페이지와 페이징 요청 메서드
     @GetMapping("/")

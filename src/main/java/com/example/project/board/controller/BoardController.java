@@ -34,11 +34,8 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
-
         return "board/index";
     }
-
-
 
     // 글 작성
     @GetMapping("board/edit")
@@ -50,7 +47,6 @@ public class BoardController {
         }
         return "board/edit";
     }
-
     @PostMapping("board/edit")
     public String edit(@ModelAttribute BoardDTO boardDTO, HttpSession session) throws IOException {
         // 세션에 저장된 userId를 writer에 저장
@@ -99,10 +95,8 @@ public class BoardController {
         if (Objects.equals(userIndex, boardDTOUserIndex)) {
             return "board/update";
         }
-
         return "redirect:/";
     }
-
     @PostMapping("board/update")
     public String update(@ModelAttribute BoardDTO boardDTO, Model model, HttpSession session) throws IOException  {
         // 세션에 저장된 userId를 writer에 저장
@@ -112,9 +106,7 @@ public class BoardController {
 
         BoardDTO board = boardService.update(boardDTO);
         model.addAttribute("board", board);
-
         return "redirect:/board/" + board.getId();
-
     }
 
     // 글 삭제

@@ -40,7 +40,6 @@ public class UserEntity {
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<CommentEntity> CommentEntityList = new ArrayList<>();
 
-
     public static UserEntity toUserEntity(UserDTO userDTO) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUserId(userDTO.getUserId());
@@ -48,7 +47,6 @@ public class UserEntity {
         userEntity.setUserName(userDTO.getUserName());
         userEntity.setUserEmail(userDTO.getUserEmail());
         userEntity.setRole(userDTO.getRole());
-
         return userEntity;
     }
 
@@ -59,8 +57,6 @@ public class UserEntity {
         userEntity.setUserPassword(userDTO.getUserPassword());
         userEntity.setUserName(userDTO.getUserName());
         userEntity.setUserEmail(userDTO.getUserEmail());
-
         return userEntity;
     }
-
 }

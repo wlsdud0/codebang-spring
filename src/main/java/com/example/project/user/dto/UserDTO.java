@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.apache.catalina.User;
 
 @Getter
 @Setter
@@ -27,9 +26,7 @@ public class UserDTO {
     private String userName;
     private String userEmail;
     private String userPhone;
-
     private UserRole role;
-
 
     public static UserDTO toUserDTO(UserEntity userEntity) {
         UserDTO userDTO = new UserDTO();
@@ -39,7 +36,6 @@ public class UserDTO {
         userDTO.setUserName(userEntity.getUserName());
         userDTO.setUserEmail(userEntity.getUserEmail());
         userDTO.setUserPhone(userEntity.getUserPhone());
-
         return userDTO;
     }
 }

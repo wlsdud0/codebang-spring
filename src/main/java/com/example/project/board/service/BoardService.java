@@ -30,7 +30,6 @@ public class BoardService {
     private final UserRepository userRepository;
 
     // 글 작성 (DTO -> entity)
-    // 글 작성 (DTO -> entity)
     @Transactional
     public void edit(BoardDTO boardDTO) throws IOException {
         // 저장
@@ -148,7 +147,6 @@ public class BoardService {
                 boardFileRepository.save(boardFileEntity);
             }
         }
-
         return findById(boardDTO.getId());
     }
 
@@ -181,26 +179,3 @@ public class BoardService {
         return boardDTOS;
     }
 }
-
-    // 페이징
-//    @Transactional
-//    public Page<BoardDTO> paging(Pageable pageable) {
-//        int page = pageable.getPageNumber() - 1;
-//        int pageLimit = 10; // 한 페이지에 보여줄 글 갯수
-//        // 한페이지당 5개씩 글을 보여주고 정렬 기준은 id 기준으로 내림차순 정렬
-//        // page 위치에 있는 값은 0부터 시작
-//        Page<BoardEntity> boardEntities =
-//                boardRepository.findAll(PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.DESC, "id")));
-//
-//        // 목록: id, 작성자, 제목, 조회, 날짜
-//        Page<BoardDTO> boardDTOS = boardEntities.map(board -> {
-//            UserEntity userEntity = board.getUserEntity();
-//
-//            Long userIndex = (userEntity != null) ? (board.getUserEntity().getId()) : 987654321L;
-//            String userName = (userEntity != null) ? board.getUserEntity().getUserName() : "알 수 없음";
-//
-//            return new BoardDTO(
-//                    board.getId(), userIndex, board.getBoardTitle(), userName, board.getBoardHits(), board.getCreatedTime()
-//            );
-//        });
-//        return boardDTOS;
