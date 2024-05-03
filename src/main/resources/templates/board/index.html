@@ -17,7 +17,6 @@
     <table class="table table-hover">
       <thead>
       <tr>
-        <th class="col-1">번호</th>
         <th class="col-3">제목</th>
         <th class="col-2">작성자</th>
         <th class="col-2">작성일</th>
@@ -25,7 +24,6 @@
       </tr>
       </thead>
       <tr th:each="board: ${boardList}">
-        <td class="col-1" th:text="${board.id}"></td>
         <td class="col-3"><a th:href="@{|/board/${board.id}|(page=${boardList.number + 1})}" th:text="${board.boardTitle}"></a></td>
         <td class="col-2" th:text="${board.userName}"></td>
         <td class="col-2" th:text="*{#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd')}"></td>
