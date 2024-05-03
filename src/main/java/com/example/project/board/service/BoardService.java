@@ -56,7 +56,7 @@ public class BoardService {
 //                String savePath = "/Users/jinyoung/springboot_img/" + storedFileName;
 
                 // 리눅스 서버
-                 String savePath = "/home/gjwlsdud730/springboot_img/" + storedFileName;
+                 String savePath = "/home/ubuntu/springboot_img/" + storedFileName;
 
                 boardFile.transferTo(new File(savePath));
 
@@ -137,7 +137,7 @@ public class BoardService {
 //                String savePath = "/Users/jinyoung/springboot_img/" + storedFileName;
 
                 // 리눅스 서버
-                 String savePath = "/home/gjwlsdud730/springboot_img/" + storedFileName;
+                String savePath = "/home/ubuntu/springboot_img/" + storedFileName;
 
                 // 파일 저장
                 boardFile.transferTo(new File(savePath));
