@@ -1,7 +1,7 @@
 # Codebang
-## 커뮤니티 웹 사이트
-- spring으로 만들어 본 개발자 커뮤니티 웹 사이트 프로젝트.
-- 배포 : [Codebang 웹 사이트](https://codebang.store)
+## 커뮤니티 프로젝트
+- spring으로 만들어 본 개발자 커뮤니티 웹사이트 프로젝트.
+- 배포 : [Codebang 웹사이트](https://codebang.store)
 
 ## 주요 기능 
 
