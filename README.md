@@ -3,28 +3,17 @@
 - spring으로 만들어 본 개발자 커뮤니티 웹사이트 프로젝트이다.
 - 배포 : [Codebang 웹사이트](https://codebang.store)
 
-### 사용된 기술
-- Java 17
-- SpringBoot 3.0.2
-- Spring MVC
-- Spring DataJPA
-- Thymeleaf
-- Gradle
-- Amazon EC2
-- MariaDB
-- Nginx
-
 ## 설계
 
-## 유스케이스 다이어그램
+### 유스케이스 다이어그램
 
 ![유스케이스 다이어그램](./img/유스케이스%20다이어그램.png)
 
-## 시스템 구성 다이어그램
+### 시스템 구성 다이어그램
 
 ![시스템 구성 다이어그램](./img/시스템%20구성%20다이어그램.png)
 
-## ERD
+### ERD
 
 ![ERD](./img/ERD.png)
 
@@ -59,6 +48,15 @@
   - 댓글은 로그인 한 유저만 작성 가능하고, 본인의 댓글을 수정 삭제 가능
   - AJAX로 비동기적인 댓글 기능 구현
 
-
+## 사용된 기술
+- Java 17
+- SpringBoot 3.0.2
+- Spring MVC
+- Spring DataJPA
+- Thymeleaf
+- Gradle
+- Amazon EC2
+- MariaDB
+- Nginx
 
 
