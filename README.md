@@ -1,7 +1,18 @@
 # Codebang
 ## 커뮤니티 프로젝트
-- spring으로 만들어 본 개발자 커뮤니티 웹사이트 프로젝트.
+- spring으로 만들어 본 개발자 커뮤니티 웹사이트 프로젝트이다.
 - 배포 : [Codebang 웹사이트](https://codebang.store)
+
+### 사용된 기술
+- Java 17
+- SpringBoot 3.0.2
+- Spring MVC
+- Spring DataJPA
+- Thymeleaf
+- Gradle
+- Amazon EC2
+- MariaDB
+- Nginx
 
 ## 주요 기능 
 
